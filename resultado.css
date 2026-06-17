@@ -10,6 +10,19 @@
   margin: 0.5rem 0;
 }
 
+.lista {
+  background-color: white;
+  padding: 1rem 1.5rem 1rem 2.5rem;
+  border-radius: 0.5rem;
+  width: 35%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin: 0;
+}
+
+.lista li {
+  padding: 0.3rem 0;
+}
+
 .volver {
   margin-top: 1.5rem;
   display: inline-block;
