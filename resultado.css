@@ -1,0 +1,25 @@
+.resultado {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  width: 35%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.resultado p {
+  margin: 0.5rem 0;
+}
+
+.volver {
+  margin-top: 1.5rem;
+  display: inline-block;
+  padding: 0.5rem 2rem;
+  background-color: #4a90d9;
+  color: white;
+  text-decoration: none;
+  border-radius: 0.4rem;
+}
+
+.volver:hover {
+  background-color: #357abd;
+}
