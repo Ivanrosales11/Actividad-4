@@ -1,45 +1,60 @@
 const form = document.querySelector("form");
 
+// Muestra un mensaje de error debajo del campo indicado
+function mostrarError(id, mensaje) {
+  const span = document.getElementById(id);
+  span.textContent = mensaje;
+}
+
+// Limpia todos los mensajes de error al inicio de cada envío
+function limpiarErrores() {
+  const errores = document.querySelectorAll(".error-mensaje");
+  errores.forEach(function (span) {
+    span.textContent = "";
+  });
+}
+
 form.addEventListener("submit", function (event) {
+  limpiarErrores();
+
   const nombre = document.getElementById("nombre").value.trim();
   const email = document.getElementById("email").value.trim();
   const edad = parseInt(document.getElementById("edad").value);
   const pais = document.getElementById("pais").value;
   const terminos = document.getElementById("terminos").checked;
 
+  let hayErrores = false;
+
   if (nombre.length < 5) {
-    event.preventDefault();
-    alert("El nombre debe tener al menos 5 caracteres");
-    return;
+    mostrarError("error-nombre", "El nombre debe tener al menos 5 caracteres.");
+    hayErrores = true;
   }
 
   const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!regexEmail.test(email)) {
-    event.preventDefault();
-    alert("Por favor, ingrese un email valido");
-    return;
+    mostrarError("error-email", "Por favor, ingrese un email válido.");
+    hayErrores = true;
   }
 
   if (isNaN(edad) || edad < 18 || edad > 60) {
-    event.preventDefault();
-    alert("Por favor, ingrese una edad entre 18 y 60 años");
-    return;
+    mostrarError("error-edad", "La edad debe estar entre 18 y 60 años.");
+    hayErrores = true;
   }
 
   if (pais === "") {
-    event.preventDefault();
-    alert("Por favor, seleccione un país");
-    return;
+    mostrarError("error-pais", "Por favor, seleccione un país.");
+    hayErrores = true;
   }
 
   if (!terminos) {
-    event.preventDefault();
-    alert("Por favor, acepte los términos y condiciones");
-    return;
+    mostrarError("error-terminos", "Debe aceptar los términos y condiciones.");
+    hayErrores = true;
   }
 
-  // Si todas las validaciones pasan, NO hacemos preventDefault:
-  // el navegador envía el form por GET y arma la URL automáticamente
-  // (resultado.html?nombre=...&email=...&edad=...&pais=...)
-  // usando el atributo name de cada campo.
+  // Si hay errores, cancelar el envío del formulario
+  if (hayErrores) {
+    event.preventDefault();
+  }
+
+  // Si no hay errores, el navegador envía el form por GET hacia resultado.html
 });

@@ -71,3 +71,10 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #357abd;
 }
+
+/* Mensajes de error bajo cada campo */
+.error-mensaje {
+    color: #d93025;
+    font-size: 0.82rem;
+    min-height: 1rem; 
+}
